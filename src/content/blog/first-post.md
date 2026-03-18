@@ -15,7 +15,6 @@ date: "2026-03-18"
 观察到身边的样本，诸如说父母不支持自己决定的人群-行事总是踌躇不前，并将部分责任潜移默化的转移给家人。说工作在压迫自己的人群-工作状态总是不佳/平时的能量状态也不佳。而后我去反观为何会观察到这些现象，对叙事的力量很敏感，并且将诸多东西串联起来。
 
 ## 一、 社会叙事 (Social Narrative)
-
 首先跳入脑海的书是尤瓦尔·赫拉利**人类简史**，这是一本很早之前看的书，里面的一个核心观点就是：**人类社会是由共同相信的叙事故事构成的，例如国家/金钱/公司/宗教都是叙事系统**，同样的“年纪大了就是会没有动力，运动不来了”这也是某种叙事。这只是宏观层面的社会叙事，那么还有其他层面的角度和理论去解释。
 * 📖 推荐书目：《人类简史》
 <img src="/images/sapiens.jpg" width="40%" style="display: block; margin: 0 auto;" />
@@ -23,28 +22,28 @@ date: "2026-03-18"
 ## 二、 语言塑造认知 (Language & Cognition)
 **语言相对论 (Sapir–Whorf Hypothesis)** 
 > **核心观点：** 语言会影响甚至塑造人的思维方式
-简单例子：如果语言结构强调时间，人更容易规划未来
-延伸到：“我老了”“我运动不起来了”
-这种语言会慢慢变成：自我解释框架
-书《Through the Language Glass》-Guy Deutscher
-核心观点：语言如何影响思维
+简单例子：如果语言结构强调时间，人更容易规划未来  
+延伸到：“我老了”“我运动不起来了”  
+这种语言会慢慢变成：自我解释框架  
+书《Through the Language Glass》-Guy Deutscher  
+核心观点：语言如何影响思维  
 * 📖 推荐书目：《Through the Language Glass》
 
 ## 三、 叙事塑造人生 (Narrative Psychology)
 **叙事心理学**
 > **核心观点：** 人是通过讲述自己的故事来理解人生
-如果一个人不断讲：“我年纪大了”“人生就这样了”，
-叙事会慢慢变成：身份认同
-书《The Stories We Live By》-Dan McAdams
+如果一个人不断讲：“我年纪大了”“人生就这样了”，  
+叙事会慢慢变成：身份认同  
+书《The Stories We Live By》-Dan McAdams  
 * 📖 推荐书目：《The Stories We Live By》- Dan McAdams
 ![The Stories We Live By](/images/stories.jpg)
 
 ## 四、 言语行为理论 (Speech Act Theory)
-哲学理论-Speech Act Theory
-> **核心观点：** 说话不仅是在描述现实,说话本身就在创造现实。
-例如：“我宣布你们结婚”
-语言本身就是行动。
-延伸到日常生活：反复说某种话，会慢慢改变行为模式
+哲学理论-Speech Act Theory  
+> **核心观点：** 说话不仅是在描述现实,说话本身就在创造现实。  
+例如：“我宣布你们结婚”  
+语言本身就是行动。  
+延伸到日常生活：反复说某种话，会慢慢改变行为模式  
 * 📖 推荐书目：《How to Do Things with Words》- J. L. Austin
 ![How to Do Things with Words](/images/words.jpg)
 
