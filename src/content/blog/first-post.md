@@ -38,7 +38,7 @@ date: "2026-03-18"
 叙事会慢慢变成：身份认同  
 书《The Stories We Live By》-Dan McAdams  
 * 📖 推荐书目：《The Stories We Live By》- Dan McAdams
-![The Stories We Live By](/images/stories.jpg)
+<img src="/images/stories.jpg" width="40%" style="display: block; margin: 0 auto;" />
 
 ## 四、 言语行为理论 (Speech Act Theory)
 哲学理论-Speech Act Theory  
@@ -48,7 +48,7 @@ date: "2026-03-18"
 语言本身就是行动。  
 延伸到日常生活：反复说某种话，会慢慢改变行为模式  
 * 📖 推荐书目：《How to Do Things with Words》- J. L. Austin
-![How to Do Things with Words](/images/words.jpg)
+<img src="/images//words.jpg" width="40%" style="display: block; margin: 0 auto;" />
 
 ## 五、 自我知觉理论 (Self-Perception Theory)
 心理学还有一个相关研究：自我知觉理论（Self-Perception Theory）
