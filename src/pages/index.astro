@@ -28,7 +28,8 @@ const allwork = (await getCollection("work"))
       return 99;
     };
     return getOrder(a.id) - getOrder(b.id);
-  });
+  })
+  .slice(0, SITE.NUM_WORKS_ON_HOMEPAGE);
 
 const work = await Promise.all(
   allwork.map(async (item) => {
