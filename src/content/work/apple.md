@@ -1,8 +1,8 @@
 ---
-company: "Apple"
-role: "Software Engineer"
-dateStart: "01/01/2020"
-dateEnd: "11/27/2022"
+company: "百力格生物公司"
+role: "科研销售"
+dateStart: "01/07/2024"
+dateEnd: "至今"
 ---
 
-Voluptatem est quaerat voluptas praesentium ipsa dolorem dignissimos nulla ratione distinctio quae maiores eligendi nostrum? Quibusdam, debitis voluptatum, lorem ipsum dolor. Sit amet consectetur adipisicing elit. Iure illo neque tempora.
+一人一包一份名片资料穿梭于高校/科研院所/国家实验室/医院之间，陌拜客户，探寻需求，对接需求。上海高校研究生背景带来小部分客户资源，受到同门/师弟师妹/师兄师姐/导师善待介绍客户，对接研究生/博士生/博后/PI/规培生/医生，链接公司的商务/市场部/合成部/试剂部/研发部/物流部（中性企业拥有灵活与自主性）。强调自主性/自驱力/个人性格特质，具备独处能力/反脆弱性/链接能力/创作能力。
