@@ -1,8 +1,8 @@
 ---
 company: "华东理工大学"
 role: "研究生"
-dateStart: "1/9/2021"
-dateEnd: "7/2024"
+dateStart: "Sep 2021"
+dateEnd: "July 2024"
 ---
 
 * 华东理工大学药学院研究生，研究课题方向：CAR-T疗法与微流控芯片的结合
