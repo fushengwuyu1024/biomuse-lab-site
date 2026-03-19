@@ -18,8 +18,17 @@ const projects = (await getCollection("projects"))
   .slice(0,SITE.NUM_PROJECTS_ON_HOMEPAGE);
 
 const allwork = (await getCollection("work"))
-  .sort((a, b) => new Date(b.data.dateStart).valueOf() - new Date(a.data.dateStart).valueOf())
-  .slice(0,SITE.NUM_WORKS_ON_HOMEPAGE);
+  .sort((a, b) => {
+    const getOrder = (id) => {
+      const lowerId = id.toLowerCase();
+      if (lowerId.includes('bioligo')) return 1;
+      if (lowerId.includes('ecust')) return 2;
+      if (lowerId.includes('starbarks')) return 3;
+      if (lowerId.includes('mcn')) return 4;
+      return 99;
+    };
+    return getOrder(a.id) - getOrder(b.id);
+  });
 
 const work = await Promise.all(
   allwork.map(async (item) => {
