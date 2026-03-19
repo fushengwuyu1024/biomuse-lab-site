@@ -1,8 +1,10 @@
 ---
-company: "Google"
-role: "Staff Software Engineer"
-dateStart: "11/27/2022"
-dateEnd: "Current"
+company: "华东理工大学"
+role: "研究生"
+dateStart: "1/9/2021"
+dateEnd: "7/2024"
 ---
 
-Sit amet consectetur adipisicing elit. Iure illo neque tempora, voluptatem est quaerat voluptas praesentium ipsa dolorem dignissimos nulla ratione distinctio quae maiores eligendi nostrum? Quibusdam, debitis voluptatum, lorem ipsum dolor.
+* 华东理工大学药学院研究生，研究课题方向：CAR-T疗法与微流控芯片的结合
+* **个人意志对抗系统阶段** 具有较强个人性格特色，研究生期间不适配国内科研体系
+* 导师们的评价是：具备个性/想法/思维活跃，导师们的担忧是需要达到具备想法与在系统中生存的平衡
