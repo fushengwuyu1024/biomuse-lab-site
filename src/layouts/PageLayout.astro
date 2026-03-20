@@ -25,74 +25,76 @@ const { title, description } = Astro.props;
       <slot />
     </main>
 
-    <div id="music-container" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 56px; height: 56px;">
+    <div id="music-container" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px;">
       
-      <div id="music-core" style="position: absolute; width: 12px; height: 12px; background: #1a1a1a; border-radius: 50%; z-index: 3; transition: all 0.4s ease;"></div>
+      <div id="music-wrapper" style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+        
+        <div id="music-core" style="position: absolute; width: 12px; height: 12px; background: #1a1a1a; border-radius: 50%; z-index: 3; transition: all 0.4s ease;"></div>
 
-      <div id="music-galaxy" style="position: absolute; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; z-index: 2; transition: all 0.3s ease;">
-        <div id="music-orbits" style="color: #1a1a1a; opacity: 0.3; transform-origin: center;">
-          <svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <circle cx="12" cy="12" r="6"></circle>
-            <circle cx="12" cy="12" r="2.5"></circle>
-          </svg>
+        <div id="music-galaxy" style="position: absolute; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; z-index: 2;">
+          
+          <div id="music-planet" style="position: absolute; width: 5px; height: 5px; background: #000; border-radius: 50%; top: -2px; opacity: 0; transition: opacity 0.3s ease;"></div>
+
+          <div id="music-orbits" style="color: #000; opacity: 0.15; transform: scale(0.9); transition: all 0.3s ease;">
+            <svg viewBox="0 0 24 24" width="50" height="50" stroke="currentColor" stroke-width="1.0" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6.5"></circle>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
         </div>
       </div>
-
-      <div style="position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 1px solid rgba(0,0,0,0.05);"></div>
 
       <audio id="bg-music" src="/audio/Opus55.mp3" loop transition:persist></audio>
     </div>
 
     <style is:global>
-      /* 动画 A：星系自转 */
-      @keyframes galaxy-rotate {
+      /* 动画 A：星系圆周旋转 */
+      @keyframes galaxy-rotation {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
       }
 
-      /* 动画 B：灵动打转（位移漂移，像眼珠打转） */
-      @keyframes eye-roll {
-        0%, 100% { transform: translate(0, 0); }
-        25% { transform: translate(2px, -2px); }
-        50% { transform: translate(-1px, 2px); }
-        75% { transform: translate(-2px, -1px); }
+      /* 动画 B：深层呼吸脉动（缩放 + 透明度复合） */
+      @keyframes deep-pulse {
+        0%, 100% { transform: scale(0.88); opacity: 0.1; }
+        50% { transform: scale(1.05); opacity: 0.45; }
       }
 
-      /* 动画 C：深层呼吸（缩放 + 透明度） */
-      @keyframes deep-breathe {
-        0%, 100% { transform: scale(0.92); opacity: 0.3; }
-        50% { transform: scale(1.08); opacity: 0.6; }
-      }
-
-      /* 初始状态：仅执行深层呼吸 */
+      /* 初始静止状态：轨道执行淡淡的呼吸，像在深海中闪烁 */
       #music-orbits {
-        animation: deep-breathe 4s ease-in-out infinite;
+        animation: deep-pulse 4s ease-in-out infinite;
       }
 
       /* 【播放激活状态】 */
       
-      /* 核心变黑变亮 */
-      .playing #music-core {
-        background: #000;
-        box-shadow: 0 0 12px rgba(0,0,0,0.2);
-        transform: scale(1.2);
+      /* 1. 轨道层：开启旋转 + 增强呼吸感 */
+      .playing #music-galaxy {
+        animation: galaxy-rotation 5s linear infinite;
       }
 
-      /* 轨道层：叠加旋转、打转和呼吸 */
       .playing #music-orbits {
-        /* 同时运行三个动画：自转(4s)、打转(5s)、呼吸(3s) */
-        animation: 
-          galaxy-rotate 4s linear infinite, 
-          eye-roll 5s ease-in-out infinite, 
-          deep-breathe 3s ease-in-out infinite !important;
-        opacity: 0.9 !important;
+        animation: deep-pulse 2.5s ease-in-out infinite !important; /* 播放时呼吸加快 */
+        opacity: 0.8 !important;
         color: #000 !important;
       }
 
-      /* 鼠标悬停时的微调 */
+      /* 2. 星球浮现 */
+      .playing #music-planet {
+        opacity: 0.85 !important;
+      }
+
+      /* 3. 核心微调 */
+      .playing #music-core {
+        background: #000;
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+
+      /* 鼠标悬停交互 */
       #music-container:hover #music-core {
-        transform: scale(1.3);
+        transform: scale(1.2);
+        box-shadow: 0 0 15px rgba(0,0,0,0.15);
       }
     </style>
 
@@ -105,7 +107,7 @@ const { title, description } = Astro.props;
         
         if (!container || !audio) return;
 
-        const refreshUI = () => {
+        const syncUI = () => {
           if (!audio.paused) {
             container.classList.add('playing');
           } else {
@@ -114,19 +116,19 @@ const { title, description } = Astro.props;
         };
 
         // 跨页面自动接力状态
-        refreshUI();
+        syncUI();
 
         container.onclick = () => {
           if (audio.paused) {
-            audio.play().then(refreshUI).catch(e => console.log("Init blocked"));
+            audio.play().then(syncUI).catch(e => console.log("Init blocked"));
           } else {
             audio.pause();
-            refreshUI();
+            syncUI();
           }
         };
       }
 
-      // 响应 Astro 视图转换
+      // 响应 Astro 视图转换，确保跳转页面后逻辑依然存活
       document.addEventListener('astro:page-load', initBioMusePlayer);
     </script>
   </body>
