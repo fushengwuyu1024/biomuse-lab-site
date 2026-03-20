@@ -17,11 +17,9 @@ body {
 }
 
 body {
-  /* 1. 给 iOS 一个明确的指令：优先调用苹果自带的衬线体 New York 或 Georgia */
-  font-family: ui-serif, Georgia, "Lora", "Noto Serif SC", serif;
-  
-  /* 2. 保持你原有的 Tailwind 样式、行间距和字间距 */
-  @apply font-serif antialiased flex flex-col bg-stone-100 dark:bg-stone-900 text-black/50 dark:text-white/75;
+  /* 强制 iOS 调用衬线体，并移除所有可能导致报错的特殊字符 */
+  font-family: ui-serif, Georgia, "Lora", serif !important;
+  @apply antialiased flex flex-col bg-stone-100 dark:bg-stone-900 text-black/50 dark:text-white/75;
   line-height: 1.8;
   letter-spacing: 0.02em;
 }
@@ -40,7 +38,7 @@ footer {
 
 article {
   @apply max-w-full prose dark:prose-invert prose-img:mx-auto prose-img:my-auto;
-  @apply prose-headings:font-semibold prose-p:font-serif prose-headings:text-black prose-headings:dark:text-white;
+  @apply prose-headings:font-semibold prose-headings:text-black prose-headings:dark:text-white;
 }
 
 @layer utilities {
@@ -69,6 +67,7 @@ html.scrolled #back-to-top {
 }
 
 p, .work-content, .experience-list {
+  font-family: ui-serif, Georgia, "Lora", serif !important;
   font-weight: 400;
   color: #333;
 }
