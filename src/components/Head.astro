@@ -187,19 +187,11 @@ function toggleTheme(dark) {
   preloadTheme();
 </script>
 <style is:inline>
-  :root {
-    --font-serif: ui-serif, Georgia, "Lora", "Noto Serif SC", serif;
-  }
-
-  html, body, p, li, a, span, div {
-    font-family: var(--font-serif) !important;
+  /* 强制注入：绕过所有编译器报错，直接对浏览器发令 */
+  html, body, p, li, .work-content, .experience-list {
+    font-family: ui-serif, Georgia, "Lora", serif !important;
     line-height: 1.8 !important;
     letter-spacing: 0.02em !important;
-    -webkit-font-smoothing: antialiased; /* 针对 iOS 的平滑处理 */
-  }
-
-  /* 针对你最在意的职业履历列表 */
-  ul, ol {
-    font-family: var(--font-serif) !important;
+    -webkit-font-smoothing: antialiased;
   }
 </style>
