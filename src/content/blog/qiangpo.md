@@ -53,6 +53,10 @@ drawer: "/images/qiangpo.jpg"
 例如当设计网站的时候，当写这篇文章的时候，做着这些看似无用却万分重要的事情，**此刻我已经实现了我的幸福，你也会找到并且实现你的幸福。**
 
 ---
+微信点击加入下方群聊二维码，加入我们沟通流动的思绪/思考/生命科学
+<img src="/images/group1.png" width="60%" style="display: block; margin: 0 auto;" />
+
+---
 
 ### 🎙️ 找到我
 * **公众号：** 就在此地Right here
