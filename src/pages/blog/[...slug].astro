@@ -3,8 +3,9 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
 import FormattedDate from "@components/FormattedDate.astro";
-import { readingTime } from "@lib/utils";
+import { readingDate } from "@lib/utils";
 import BackToPrev from "@components/BackToPrev.astro";
+import { SITE, SOCIALS } from "@consts";
 
 export async function getStaticPaths() {
   const posts = (await getCollection("blog"))
@@ -28,15 +29,9 @@ const { Content } = await post.render();
         Back to blog
       </BackToPrev>
     </div>
-    <div class="space-y-1 my-10">
+    <div class="space-y-1 my-10 text-stone-600 dark:text-stone-400">
       <div class="animate flex items-center gap-1.5">
-        <div class="font-base text-sm">
-          <FormattedDate date={post.data.date} />
-        </div>
-        &bull;
-        <div class="font-base text-sm">
-          {readingTime(post.body)}
-        </div>
+        <FormattedDate date={post.data.date} />
       </div>
       <div class="animate text-2xl font-semibold text-black dark:text-white">
         {post.data.title}
@@ -44,41 +39,33 @@ const { Content } = await post.render();
     </div>
     <article class="animate">
       <Content />
-
-      <hr class="my-8 border-stone-200 dark:border-stone-800" />
       
-      <section class="animate space-y-4">
-        <h5 class="font-semibold text-black dark:text-white">
+      <hr class="my-12 border-stone-200 dark:border-stone-800" />
+      <section class="space-y-6 pb-20">
+        <h5 class="font-semibold text-black dark:text-white text-lg">
           让我们彼此触达
         </h5>
-        <div class="prose dark:prose-invert">
+        <div class="prose dark:prose-invert text-stone-600 dark:text-stone-400">
           <p>
             万物穿身而过，就在此处。如果你想知道更多，或者想和我聊聊任何想法，或者单纯打个招呼，欢迎通过以下方式触达。（点击下方可跳转）
           </p>
         </div>
-        <ul class="flex flex-wrap gap-2 text-sm">
+        <ul class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
           {SOCIALS.map((SOCIAL) => (
-            <li class="flex gap-x-2 text-nowrap">
-              <a 
-                href={SOCIAL.HREF} 
-                target="_blank" 
-                class="text-current underline underline-offset-2 decoration-black/15 dark:decoration-white/30 hover:text-black hover:dark:text-white transition-colors duration-300"
-              >
+            <li class="flex items-center gap-x-4">
+              <a href={SOCIAL.HREF} target="_blank" class="underline underline-offset-4 decoration-stone-300 dark:decoration-stone-700 hover:decoration-black dark:hover:decoration-white transition-all">
                 {SOCIAL.NAME}
               </a>
-              <span class="text-stone-300 dark:text-stone-700">/</span>
+              <span class="text-stone-300 dark:text-stone-800">/</span>
             </li>
           ))}
-          <li class="line-clamp-1">
-            <a 
-              href={`mailto:${SITE.EMAIL}`} 
-              class="text-current underline underline-offset-2 decoration-black/15 dark:decoration-white/30 hover:text-black hover:dark:text-white transition-colors duration-300"
-            >
+          <li>
+            <a href={`mailto:${SITE.EMAIL}`} class="underline underline-offset-4 decoration-stone-300 dark:decoration-stone-700 hover:decoration-black dark:hover:decoration-white transition-all">
               {SITE.EMAIL}
             </a>
           </li>
         </ul>
       </section>
-      </article>
+    </article>
   </Container>
 </PageLayout>
