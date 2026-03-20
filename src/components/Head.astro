@@ -185,11 +185,39 @@ function toggleTheme(dark) {
   preloadTheme();
 </script>
 <style is:inline>
-  /* 强制苹果、安卓、PC 统一使用衬线质感 */
-  html, body, p, li, a, span, .work-content, .experience-list {
-    font-family: ui-serif, Georgia, "Lora", serif !important;
+  /* 1. 强制全站所有文本标签（包括苹果、安卓、PC）统一使用衬线质感 */
+  html, 
+  body, 
+  p, 
+  li, 
+  a, 
+  span, 
+  div, 
+  h1, 
+  h2, 
+  h3, 
+  h4, 
+  section,
+  article,
+  .work-content, 
+  .experience-list {
+    /* ui-serif 是苹果系统的衬线指令，Georgia 是 Windows 的高级衬线，Lora 是安卓下载的字体 */
+    font-family: ui-serif, Georgia, "Lora", "Noto Serif SC", serif !important;
     line-height: 1.8 !important;
     letter-spacing: 0.02em !important;
-    -webkit-font-smoothing: antialiased;
+    
+    /* 2. 关键：解决苹果手机（iOS Safari）文字发虚问题，增强笔锋感 */
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* 3. 针对列表容器的二次加固，确保职业履历的圆点和文字对齐且优雅 */
+  ul, ol {
+    font-family: ui-serif, Georgia, "Lora", serif !important;
+  }
+
+  /* 4. 这里的颜色调整是为了配合衬线体的“呼吸感” */
+  body {
+    color: #333 !important; /* 稍微深一点的炭灰色，比纯黑更有质感 */
   }
 </style>
