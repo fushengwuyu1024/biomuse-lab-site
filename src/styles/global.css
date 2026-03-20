@@ -17,7 +17,6 @@ body {
 }
 
 body {
-  /* 强制 iOS 调用衬线体，并移除所有可能导致报错的特殊字符 */
   font-family: ui-serif, Georgia, "Lora", serif !important;
   @apply antialiased flex flex-col bg-stone-100 dark:bg-stone-900 text-black/50 dark:text-white/75;
   line-height: 1.8;
