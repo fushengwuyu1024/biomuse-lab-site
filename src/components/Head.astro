@@ -187,11 +187,11 @@ function toggleTheme(dark) {
   preloadTheme();
 </script>
 <style is:inline>
-  /* 强制注入：绕过所有编译器报错，直接对浏览器发令 */
-  html, body, p, li, .work-content, .experience-list {
+  * {
     font-family: ui-serif, Georgia, "Lora", serif !important;
+  }
+  p, li, .work-content {
     line-height: 1.8 !important;
     letter-spacing: 0.02em !important;
-    -webkit-font-smoothing: antialiased;
   }
 </style>
