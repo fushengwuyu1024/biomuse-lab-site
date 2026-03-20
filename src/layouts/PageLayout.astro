@@ -25,68 +25,71 @@ const { title, description } = Astro.props;
       <slot />
     </main>
 
-    <div id="music-container" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; cursor: pointer; display: flex; align-items: center; justify-content: center;">
-      <div id="music-wrapper" style="position: relative; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
-        
-        <div id="music-ring" style="position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.7); border-top-color: transparent; transition: all 0.3s ease;"></div>
-        
-        <div id="music-disk" style="width: 36px; height: 36px; border-radius: 50%; background: #1a1a1a; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4); z-index: 2;">
-          <div id="music-icon" style="color: white; opacity: 0.6;">
-            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <circle cx="12" cy="12" r="4"></circle>
-              <circle cx="12" cy="12" r="1" fill="currentColor"></circle>
-            </svg>
-          </div>
+    <div id="music-container" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px;">
+      
+      <div id="music-core" style="position: absolute; width: 12px; height: 12px; background: #1a1a1a; border-radius: 50%; z-index: 2; transition: all 0.3s ease;"></div>
+
+      <div id="music-disk" style="position: absolute; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; z-index: 1;">
+        <div id="music-icon" style="color: #1a1a1a; opacity: 0.4; transition: all 0.3s ease;">
+          <svg viewBox="0 0 24 24" width="40" height="40" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="6"></circle>
+            <circle cx="12" cy="12" r="2"></circle>
+          </svg>
         </div>
       </div>
+
       <audio id="bg-music" src="/audio/Opus55.mp3" loop transition:persist></audio>
     </div>
 
     <style is:global>
-      /* 动画 1：呼吸灯（用于提示交互） */
-      @keyframes ring-breathe {
-        0% { transform: scale(0.9); opacity: 0.3; }
-        50% { transform: scale(1.1); opacity: 0.7; }
-        100% { transform: scale(0.9); opacity: 0.3; }
-      }
-
-      /* 动画 2：匀速圆周旋转（用于播放反馈） */
-      @keyframes ring-rotate {
+      /* 轨道公转动画 */
+      @keyframes orbit-rotation {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
       }
 
-      /* 初始状态：外层光环执行呼吸动画 */
-      #music-ring {
-        animation: ring-breathe 3s ease-in-out infinite;
+      /* 初始呼吸状态（提示可点击） */
+      @keyframes hint-breathe {
+        0% { transform: scale(0.9); opacity: 0.3; }
+        50% { transform: scale(1.1); opacity: 0.6; }
+        100% { transform: scale(0.9); opacity: 0.3; }
       }
 
-      /* 播放状态：切换到匀速旋转，并增强亮度 */
-      .playing-active #music-ring {
-        animation: ring-rotate 2s linear infinite !important;
-        border-color: white !important;
-        border-top-color: transparent !important;
-        opacity: 1 !important;
+      /* 默认：同心圆轨道执行呼吸动画 */
+      #music-icon {
+        animation: hint-breathe 3s ease-in-out infinite;
       }
 
-      /* 播放时内层图标变亮 */
+      /* 播放状态：切换到匀速旋转 */
       .playing-active #music-icon {
-        opacity: 1 !important;
+        animation: orbit-rotation 4s linear infinite !important;
+        opacity: 0.9 !important;
+        color: #000 !important; /* 播放时加深颜色，增强视觉感 */
+      }
+
+      /* 播放时中心黑点稍微放大，增加稳固感 */
+      .playing-active #music-core {
+        transform: scale(1.2);
+        background: #000;
+      }
+
+      /* 悬停时的小反馈 */
+      #music-container:hover #music-core {
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
       }
     </style>
 
     <Footer />
 
     <script is:inline>
-      function initMusicPlayer() {
+      function initGalaxyPlayer() {
         const container = document.getElementById('music-container');
         const audio = document.getElementById('bg-music');
         
         if (!container || !audio) return;
 
-        // 核心逻辑：根据音频状态同步视觉类名
-        const syncUI = () => {
+        const syncState = () => {
           if (!audio.paused) {
             container.classList.add('playing-active');
           } else {
@@ -94,21 +97,21 @@ const { title, description } = Astro.props;
           }
         };
 
-        // 跨页面接力时自动同步一次
-        syncUI();
+        // 页面跳转后的状态接力
+        syncState();
 
         container.onclick = () => {
           if (audio.paused) {
-            audio.play().then(syncUI).catch(e => console.log("Blocked"));
+            audio.play().then(syncState).catch(err => console.log("Playback blocked"));
           } else {
             audio.pause();
-            syncUI();
+            syncState();
           }
         };
       }
 
-      // 确保在 Astro 全站跳转后依然激活脚本
-      document.addEventListener('astro:page-load', initMusicPlayer);
+      // 配合 ViewTransitions 的生命周期
+      document.addEventListener('astro:page-load', initGalaxyPlayer);
     </script>
   </body>
 </html>
