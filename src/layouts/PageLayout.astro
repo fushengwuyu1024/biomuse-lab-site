@@ -16,6 +16,8 @@ const { title, description } = Astro.props;
 <html lang="en">
   <head>
     <Head title={`${title} | ${SITE.NAME}`} description={description} />
+    import { ViewTransitions } from 'astro:transitions';
+    <ViewTransitions />
   </head>
   <body>
     <Header />
@@ -33,7 +35,7 @@ const { title, description } = Astro.props;
           </svg>
         </div>
       </div>
-      <audio id="bg-music" src="/audio/Opus55.mp3" loop></audio>
+      <audio id="bg-music" src="/audio/Opus55.mp3" loop transition:persist></audio>
     </div>
 
     <style>
