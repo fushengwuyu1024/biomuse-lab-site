@@ -66,7 +66,7 @@ tags: ["不对到对", "流动感", "创作状态", "对齐", "存在感"]
 ---
 ###  一起沟通
 微信点击加入下方群聊二维码，加入我们沟通流动的思绪/思考/生命科学
-<img src="/images/group1.png" width="60%" style="display: block; margin: 0 auto;" />
+<img src="/images/group1.png" width="40%" style="display: block; margin: 0 auto;" />
 
 ---
 
