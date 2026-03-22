@@ -5,39 +5,46 @@ import Container from "@components/Container.astro";
 
 <PageLayout title="控制台 | BioMuse_Lab" description="主理人专属权限">
   <Container>
-    <div class="animate mt-20 space-y-10">
-      <header class="space-y-2">
-        <h1 class="text-3xl font-semibold text-black dark:text-white">上帝控制台</h1>
-        <p class="text-stone-500 text-sm italic">“在这里，数据只是可塑的黏土。”</p>
+    <div class="py-24 max-w-xl mx-auto space-y-12">
+      
+      <header class="space-y-3 text-center">
+        <h1 class="text-3xl font-bold tracking-tight text-black dark:text-white">上帝控制台</h1>
+        <p class="text-stone-500 text-sm italic font-serif">“在这里，数据只是可塑的黏土。”</p>
       </header>
 
-      <div id="auth-section" class="space-y-4">
-        <input type="password" id="admin-pass" placeholder="输入访问密钥..." class="w-full px-4 py-2 rounded border border-stone-200 dark:border-stone-800 bg-transparent focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white transition-all" />
-        <button id="login-btn" class="px-6 py-2 bg-black dark:bg-white text-white dark:text-black rounded text-sm hover:opacity-80 transition-opacity">进入后台</button>
+      <div id="auth-section" class="p-8 border border-stone-200 dark:border-stone-800 rounded-xl bg-stone-50/50 dark:bg-stone-900/50 backdrop-blur-sm space-y-6">
+        <div class="space-y-2">
+          <label class="text-xs uppercase tracking-widest text-stone-400 font-semibold">验证密钥</label>
+          <input type="password" id="admin-pass" placeholder="••••••••" class="w-full px-4 py-3 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all text-center tracking-widest" />
+        </div>
+        <button id="login-btn" class="w-full py-3 bg-black dark:bg-white text-white dark:text-black rounded-lg font-medium hover:opacity-90 transition-all active:scale-[0.98]">进入后台</button>
       </div>
 
-      <div id="control-section" class="hidden space-y-8 pb-20">
-        <div class="p-6 border border-stone-200 dark:border-stone-800 rounded-lg space-y-6">
+      <div id="control-section" class="hidden animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-6">
+        <div class="p-8 border border-stone-200 dark:border-stone-800 rounded-xl space-y-8">
+          
           <div class="space-y-2">
-            <label class="text-sm font-medium">目标文章 Slug</label>
-            <input type="text" id="target-slug" placeholder="例如: /blog/qiangpo" class="w-full px-3 py-1.5 bg-stone-50 dark:bg-stone-900 rounded border border-stone-200 dark:border-stone-800" />
+            <label class="text-xs uppercase tracking-widest text-stone-400 font-semibold">目标文章路径 (Slug)</label>
+            <input type="text" id="target-slug" placeholder="/blog/qiangpo" class="w-full px-4 py-2 bg-stone-50 dark:bg-stone-900 rounded-md border border-stone-200 dark:border-stone-800 focus:ring-1 focus:ring-stone-400 outline-none" />
           </div>
 
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-2 gap-6">
             <div class="space-y-2">
-              <label class="text-sm font-medium">点赞数 (Likes)</label>
-              <input type="number" id="new-likes" class="w-full px-3 py-1.5 bg-stone-50 dark:bg-stone-900 rounded border border-stone-200 dark:border-stone-800" />
+              <label class="text-xs uppercase tracking-widest text-stone-400 font-semibold">喜欢 (Likes)</label>
+              <input type="number" id="new-likes" placeholder="0" class="w-full px-4 py-2 bg-stone-50 dark:bg-stone-900 rounded-md border border-stone-200 dark:border-stone-800" />
             </div>
             <div class="space-y-2">
-              <label class="text-sm font-medium">阅读量 (Views)</label>
-              <input type="number" id="new-views" class="w-full px-3 py-1.5 bg-stone-50 dark:bg-stone-900 rounded border border-stone-200 dark:border-stone-800" />
+              <label class="text-xs uppercase tracking-widest text-stone-400 font-semibold">阅读 (Views)</label>
+              <input type="number" id="new-views" placeholder="0" class="w-full px-4 py-2 bg-stone-50 dark:bg-stone-900 rounded-md border border-stone-200 dark:border-stone-800" />
             </div>
           </div>
 
-          <button id="update-btn" class="w-full py-2 bg-rose-500 text-white rounded text-sm font-semibold hover:bg-rose-600 transition-colors">执行修改</button>
-          <p id="status-msg" class="text-center text-xs text-stone-400"></p>
+          <button id="update-btn" class="w-full py-4 bg-rose-600 text-white rounded-lg font-bold hover:bg-rose-500 shadow-lg shadow-rose-500/20 transition-all active:scale-[0.98]">重塑数据</button>
+          
+          <p id="status-msg" class="text-center text-sm font-medium h-4 text-stone-500"></p>
         </div>
       </div>
+
     </div>
   </Container>
 </PageLayout>
@@ -45,7 +52,7 @@ import Container from "@components/Container.astro";
 <script is:inline>
   const SUPABASE_URL = 'https://qernpndylyidpkkxapvc.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_MS5LLXfj-dri8s3OuzEtpQ_Y-6Q0I38';
-  const ADMIN_KEY = 'insight2026'; // 这是你的登录密码，你可以自己改
+  const ADMIN_KEY = 'insight2026';
 
   document.addEventListener('astro:page-load', () => {
     const authSection = document.getElementById('auth-section');
@@ -56,17 +63,15 @@ import Container from "@components/Container.astro";
     const updateBtn = document.getElementById('update-btn');
     const statusMsg = document.getElementById('status-msg');
 
-    // 1. 简易登录逻辑
     loginBtn.onclick = () => {
       if (adminPass.value === ADMIN_KEY) {
-        authSection.classList.add('hidden');
+        authSection.style.display = 'none';
         controlSection.classList.remove('hidden');
       } else {
-        alert('密钥错误');
+        alert('密钥错误，权限拒绝');
       }
     };
 
-    // 2. 数据更新逻辑
     updateBtn.onclick = async () => {
       const slug = document.getElementById('target-slug').value;
       const likes = parseInt(document.getElementById('new-likes').value);
@@ -88,13 +93,13 @@ import Container from "@components/Container.astro";
         });
 
         if (response.ok) {
-          statusMsg.innerText = '修改成功，世界已重塑。';
+          statusMsg.innerText = '✨ 世界已重塑。';
           setTimeout(() => statusMsg.innerText = '', 3000);
         } else {
-          statusMsg.innerText = '修改失败，请检查 Slug 是否正确。';
+          statusMsg.innerText = '❌ 路径不存在，请检查 Slug';
         }
       } catch (e) {
-        statusMsg.innerText = '连接中断。';
+        statusMsg.innerText = '📡 连接中断';
       }
     };
   });
