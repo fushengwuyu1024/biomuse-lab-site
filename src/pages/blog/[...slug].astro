@@ -161,8 +161,12 @@ const { Content } = await post.render();
 
     // --- 核心逻辑：更新统计数据 (阅读量+1 并 获取点赞) ---
     async function syncStats() {
+      // 1. 定义一个“看过”的标记
+      const viewedKey = `viewed_${postSlug}`;
+      const hasViewed = localStorage.getItem(viewedKey);
+
       try {
-        // 1. 先获取当前数据
+        // 获取当前数据
         const res = await fetch(`${SUPABASE_URL}/rest/v1/post_stats?slug=eq.${postSlug}&select=likes,views`, {
           headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
         });
@@ -175,24 +179,30 @@ const { Content } = await post.render();
           likes = data[0].likes || 0;
           views = data[0].views || 0;
           
-          // 2. 更新云端：阅读量 + 1
-          fetch(`${SUPABASE_URL}/rest/v1/post_stats?slug=eq.${postSlug}`, {
-            method: 'PATCH',
-            headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
-            body: JSON.stringify({ views: views + 1 })
-          });
+          // 2. 核心逻辑：只有本地没看过，才去云端 +1
+          if (!hasViewed) {
+            fetch(`${SUPABASE_URL}/rest/v1/post_stats?slug=eq.${postSlug}`, {
+              method: 'PATCH',
+              headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
+              body: JSON.stringify({ views: views + 1 })
+            });
+            views = views + 1; // 视觉上立即加 1
+            localStorage.setItem(viewedKey, 'true'); // 打上“看过”标记
+          }
         } else {
-          // 3. 如果没记录，则初始化 (0赞 1看)
+          // 初始化逻辑 (如果是新文章)
           fetch(`${SUPABASE_URL}/rest/v1/post_stats`, {
             method: 'POST',
             headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({ slug: postSlug, likes: 0, views: 1 })
           });
+          views = 1;
+          localStorage.setItem(viewedKey, 'true');
         }
 
-        // 4. 更新 UI
+        // 3. 更新界面展示
         if (likeText) likeText.innerText = `${likes} 喜欢`;
-        if (viewCountEl) viewCountEl.innerText = `${views + 1} 次阅读`;
+        if (viewCountEl) viewCountEl.innerText = `${views} 次阅读`;
 
       } catch (e) { console.error("Stats Error:", e); }
     }
