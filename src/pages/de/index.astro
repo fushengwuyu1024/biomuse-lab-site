@@ -1,1 +1,69 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import Container from "@components/Container.astro";
+import { SITE } from "@consts";
+---
 
+<PageLayout title="BioMuse Lab | DE" description="Digitales Portfolio eines Forschers">
+  <Container>
+    <div class="space-y-16">
+      
+      <section>
+        <article class="space-y-4">
+          <h4 class="animate font-semibold text-black dark:text-white">
+            Genau hier, so wie ich bin 👋🏻
+          </h4>
+          <p class="animate">
+            Eine Frau ohne feste Form, derzeit auf Entdeckungsreise in einem Biotech-Unternehmen in Shanghai.
+          </p>
+          <p class="animate">
+            Ich betrachte den gesamten Lebensweg als ein kreatives Werk und pflege einen Zustand des kontinuierlichen Flusses. 
+          </p>
+          <p class="animate border-l-2 border-black/10 dark:border-white/10 pl-4">
+            <em>„Alles geht durch mich hindurch, ich sammle es in meinem Gefäß.“</em>
+          </p>
+        </article>
+      </section>
+
+      <section class="animate space-y-6">
+        <h5 class="font-semibold text-black dark:text-white">Lebenswege & Experimente</h5>
+        
+        <div class="space-y-10">
+          <div>
+            <div class="text-xs text-black/50 dark:text-white/50">Jul 2024 - Mär 2026</div>
+            <div class="font-semibold text-sm">Bioligo (Shanghai)</div>
+            <div class="text-xs italic">Wissenschaftlicher Vertrieb</div>
+            <p class="text-sm mt-2">Verbindung von Forschung und Industrie; Fokus auf CAR-T und Nukleinsäure-Technologie.</p>
+          </div>
+
+          <div>
+            <div class="text-xs text-black/50 dark:text-white/50">Nov 2025 - Feb 2026</div>
+            <div class="font-semibold text-sm">Starbucks</div>
+            <div class="text-xs italic">Barista</div>
+            <p class="text-sm mt-2">Beobachtung des menschlichen Flusses inmitten des Alltags.</p>
+          </div>
+
+          <div>
+            <div class="text-xs text-black/50 dark:text-white/50">Jun 2025 - Jun 2025</div>
+            <div class="font-semibold text-sm">MCN Medienunternehmen</div>
+            <div class="text-xs italic">Livestreamer</div>
+            <p class="text-sm mt-2">Einblick in die Mechanik der digitalen Identitätsbildung.</p>
+          </div>
+
+          <div>
+            <div class="text-xs text-black/50 dark:text-white/50">Sep 2021 - Jul 2024</div>
+            <div class="font-semibold text-sm">ECUST (Pharmazie)</div>
+            <div class="text-xs italic">Masterstudium</div>
+            <p class="text-sm mt-2">Integration von CAR-T-Therapie und Mikrofluidik-Chips.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="animate space-y-4 pb-12">
+        <h5 class="font-semibold text-black dark:text-white">Kontakt</h5>
+        <div class="text-sm underline">rightheretc@163.com</div>
+      </section>
+
+    </div>
+  </Container>
+</PageLayout>
