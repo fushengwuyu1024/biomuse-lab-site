@@ -3,6 +3,7 @@ title: "如何具备思辨能力：不要长期关注任何人，并且提笔写
 description: "问：每日阅读真的可以提高写作能力么？答：不能。你最好直接开始写，写一切你觉得可以写的事物"
 date: "2025-11-25"
 drawer: "/images/starry-sky.jpg"
+lang: "cn"
 ---
 
 ![一名没有形状的女子](/images/banner.png)
