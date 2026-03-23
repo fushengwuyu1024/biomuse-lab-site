@@ -3,6 +3,7 @@ title: "语言会塑造你，人需要觉察自己的言行"
 description: "拆解语言如何悄悄勾勒我们的人生轨道。"
 date: "2026-03-18"
 drawer: "/images/stories.jpg"
+lang: "cn"
 ---
 
 ![一名没有形状的女子](/images/banner.png)
