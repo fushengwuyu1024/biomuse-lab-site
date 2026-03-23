@@ -1,15 +1,22 @@
 ---
+import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
+import ArrowCard from "@components/ArrowCard.astro";
 import { SITE } from "@consts";
+
+const posts = (await getCollection("blog"))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 ---
 
-<PageLayout title="BioMuse Lab | DE" description="Digitales Portfolio eines Forschers">
+<PageLayout title="BioMuse Lab | DE" description="Digitale Festung einer Frau ohne feste Form">
   <Container>
     <div class="space-y-16">
       
       <section>
-        <article class="space-y-4">
+        <article class="space-y-4 text-black/80 dark:text-white/80">
           <h4 class="animate font-semibold text-black dark:text-white">
             Genau hier, so wie ich bin 👋🏻
           </h4>
@@ -17,51 +24,90 @@ import { SITE } from "@consts";
             Eine Frau ohne feste Form, derzeit auf Entdeckungsreise in einem Biotech-Unternehmen in Shanghai.
           </p>
           <p class="animate">
-            Ich betrachte den gesamten Lebensweg als ein kreatives Werk und pflege einen Zustand des kontinuierlichen Flusses. 
+            Ich betrachte den gesamten Lebensweg als ein kreatives Werk und pflege einen Zustand des kontinuierlichen Flusses. Das Schreiben dessen, was schreibbar ist, Authentizität in Podcasts und die Dokumentation beruflicher Erkenntnisse sowie Forschungsmethoden in den Biowissenschaften.
           </p>
-          <p class="animate border-l-2 border-black/10 dark:border-white/10 pl-4">
-            <em>„Alles geht durch mich hindurch, ich sammle es in meinem Gefäß.“</em>
+          <p class="animate">
+            Aufbau eines „Resonanzlabors“, das <strong>„Emotionale Kreation“</strong> mit <strong>„Rationalem Experimentieren“</strong> verbindet.
+          </p>
+          <p class="animate border-l-2 border-black/10 dark:border-white/10 pl-4 italic">
+            „Alles geht durch mich hindurch, ich sammle es in meinem Gefäß.“ <br/>
+            Schreiben, Forschung und Kunst sind miteinander verbundene Ausdrucksformen — die kontinuierlichen Spuren des Lebens, das in diesem Gefäß fließt.
           </p>
         </article>
       </section>
 
       <section class="animate space-y-6">
-        <h5 class="font-semibold text-black dark:text-white">Lebenswege & Experimente</h5>
+        <div class="flex flex-wrap gap-y-2 justify-between items-center">
+          <h5 class="font-semibold text-black dark:text-white">
+            Aktuelle Beiträge
+          </h5>
+          <a href="/blog" class="whitespace-nowrap py-1 px-3 rounded-full border border-black/10 dark:border-white/25 hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-xs">
+            Alle ansehen
+          </a>
+        </div>
+        
+        <p class="text-[11px] italic text-black/40 dark:text-white/40 -mt-3 tracking-wide">
+          Hinweis: Tiefe Reflexionen und Forschungsnotizen werden derzeit auf Chinesisch gepflegt. Deutsche Übersetzungen sind in Arbeit...
+        </p>
+
+        <ul class="flex flex-col gap-4">
+          {posts.map(post => (
+            <li>
+              <ArrowCard entry={post} />
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="animate space-y-6">
+        <div class="flex flex-wrap gap-y-2 justify-between items-center border-b border-black/5 pb-2">
+          <h5 class="font-semibold text-black dark:text-white">Lebenswege & Experimente</h5>
+        </div>
         
         <div class="space-y-10">
           <div>
             <div class="text-xs text-black/50 dark:text-white/50">Jul 2024 - Mär 2026</div>
-            <div class="font-semibold text-sm">Bioligo (Shanghai)</div>
-            <div class="text-xs italic">Wissenschaftlicher Vertrieb</div>
-            <p class="text-sm mt-2">Verbindung von Forschung und Industrie; Fokus auf CAR-T und Nukleinsäure-Technologie.</p>
+            <div class="font-semibold text-sm text-black dark:text-white">Bioligo (Shanghai)</div>
+            <div class="text-xs italic mb-2">Wissenschaftlicher Vertrieb</div>
+            <p class="text-sm text-black/70 dark:text-white/70 leading-relaxed">
+              Verbindung von Forschung und Industrie; Fokus auf CAR-T und Nukleinsäure-Technologie.
+            </p>
           </div>
 
           <div>
             <div class="text-xs text-black/50 dark:text-white/50">Nov 2025 - Feb 2026</div>
-            <div class="font-semibold text-sm">Starbucks</div>
-            <div class="text-xs italic">Barista</div>
-            <p class="text-sm mt-2">Beobachtung des menschlichen Flusses inmitten des Alltags.</p>
+            <div class="font-semibold text-sm text-black dark:text-white">Starbucks</div>
+            <div class="text-xs italic mb-2">Barista</div>
+            <p class="text-sm text-black/70 dark:text-white/70 leading-relaxed">
+              Beobachtung des menschlichen Flusses im Alltag — eine spirituelle Praxis in den gewöhnlichen Aufgaben.
+            </p>
           </div>
 
           <div>
             <div class="text-xs text-black/50 dark:text-white/50">Jun 2025 - Jun 2025</div>
-            <div class="font-semibold text-sm">MCN Medienunternehmen</div>
-            <div class="text-xs italic">Livestreamer</div>
-            <p class="text-sm mt-2">Einblick in die Mechanik der digitalen Identitätsbildung.</p>
+            <div class="font-semibold text-sm text-black dark:text-white">MCN Media Unternehmen</div>
+            <div class="text-xs italic mb-2">Livestreamer</div>
+            <p class="text-sm text-black/70 dark:text-white/70 leading-relaxed">
+              Zeuge der Erschaffung von „Influencern“ und Erkundung der Maschinerie hinter der digitalen Identität.
+            </p>
           </div>
 
           <div>
             <div class="text-xs text-black/50 dark:text-white/50">Sep 2021 - Jul 2024</div>
-            <div class="font-semibold text-sm">ECUST (Pharmazie)</div>
-            <div class="text-xs italic">Masterstudium</div>
-            <p class="text-sm mt-2">Integration von CAR-T-Therapie und Mikrofluidik-Chips.</p>
+            <div class="font-semibold text-sm text-black dark:text-white">ECUST (Pharmazie)</div>
+            <div class="text-xs italic mb-2">Masterstudentin</div>
+            <p class="text-sm text-black/70 dark:text-white/70 leading-relaxed">
+              Forschung zur Integration von CAR-T-Therapie und Mikrofluidik-Chips. Eine Phase der Selbstbehauptung gegenüber systemischen Strukturen.
+            </p>
           </div>
         </div>
       </section>
 
       <section class="animate space-y-4 pb-12">
         <h5 class="font-semibold text-black dark:text-white">Kontakt</h5>
-        <div class="text-sm underline">rightheretc@163.com</div>
+        <div class="flex flex-wrap gap-3 text-sm underline text-black/70 dark:text-white/70">
+          <a href="#">Offizielles Konto</a> / <a href="#">Podcast</a> / <a href="#">Webseite</a> / <a href="mailto:rightheretc@163.com">rightheretc@163.com</a>
+        </div>
       </section>
 
     </div>
