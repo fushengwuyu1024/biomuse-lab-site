@@ -2,6 +2,20 @@
 import Container from "@components/Container.astro";
 import Link from "@components/Link.astro";
 import { SITE } from "@consts";
+
+// ✨ 核心逻辑：获取当前路径并判断语言
+const url = Astro.url.pathname;
+const isEn = url.includes('/en');
+const isDe = url.includes('/de');
+const isFr = url.includes('/fr');
+
+// ✨ 根据语言定义导航文字
+const nav = {
+  blog: isEn ? "Blog" : isDe ? "Blog" : isFr ? "Blog" : "文章",
+  work: isEn ? "Work" : isDe ? "Arbeit" : isFr ? "Expériences" : "工作学习",
+  projects: isEn ? "Projects" : isDe ? "Projekte" : isFr ? "Projets" : "作品灵感",
+  home: isEn ? "Home" : isDe ? "Home" : isFr ? "Accueil" : "就在此处"
+};
 ---
 
 <header>
@@ -9,21 +23,21 @@ import { SITE } from "@consts";
     <div class="flex flex-wrap gap-y-2 justify-between items-center">
       <Link href="/" underline={false}>
         <div class="font-semibold text-black dark:text-white text-lg tracking-tight">
-          {SITE.NAME}
+          {nav.home}
         </div>
       </Link>
       
-      <nav class="flex gap-1 items-center text-sm font-serif">
-        <Link href="/blog">文章</Link>
+      <nav class="flex gap-1 items-center text-sm">
+        <Link href="/blog">{nav.blog}</Link>
         <span class="text-black/30 dark:text-white/30">/</span>
-        <Link href="/work">工作学习</Link>
+        <Link href="/work">{nav.work}</Link>
         <span class="text-black/30 dark:text-white/30">/</span>
-        <Link href="/projects">作品灵感</Link>
+        <Link href="/projects">{nav.projects}</Link>
 
         <div class="mx-4 h-6 border-l border-black/15 dark:border-white/15"></div>
 
         <div class="flex flex-col items-center">
-          <div class="flex gap-1 text-xs text-black/60 dark:text-white/60 font-medium">
+          <div class="flex gap-1 text-xs text-black/60 dark:text-white/60 font-medium whitespace-nowrap">
             <Link href="/" underline={false}>CN</Link>
             <span>/</span>
             <Link href="/en" underline={false}>EN</Link>
@@ -32,7 +46,7 @@ import { SITE } from "@consts";
             <span>/</span>
             <Link href="/fr" underline={false}>FR</Link>
           </div>
-          <span class="text-[15px] tracking-widest text-black/30 dark:text-white/30 pt-0.5 border-t border-black/10 dark:border-white/10 scale-90 w-full text-center mt-0.5">
+          <span class="text-[10px] tracking-widest text-black/30 dark:text-white/30 mt-0.5 pt-0.5 border-t border-black/10 dark:border-white/10 scale-90 w-full text-center">
             language
           </span>
         </div>
