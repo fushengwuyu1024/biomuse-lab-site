@@ -33,7 +33,8 @@ tags: ["taste", "human", "直觉", "感知"]
 我认为这是一种**跨界思维的直觉洞察力**，这是一种鸟瞰的感觉，你**不需要思考/不需要深刻的逻辑能力，这是“直觉”，这是对于“美感”的感知能力**。
 <img src="/images/yanglao.jpg" width="60%" style="display: block; margin: 0 auto;" />
 
-## 乔布斯-Ultimately,it comes down to taste(最终，一切都取决于品味)
+## 乔布斯
+> Ultimately,it comes down to taste(最终，一切都取决于品味)
 这又让我联想到了乔布斯。他反复提及，要**留意当下的直觉/热爱/感知**。
 
 他年轻时选修书法课，当时他并不知道这有什么用，他只是喜欢这些优美字体罢了，之后这些字体被用入了Mac。他无意接触了禅修/冥想，这些东方哲学又给了他极简/平静的审美。
