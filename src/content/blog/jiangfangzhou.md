@@ -69,7 +69,7 @@ AI它无法生出真正的可代表作者本人个人意志和社会意志的作
 ---
 ###  一起沟通
 微信点击加入下方群聊二维码，加入我们沟通流动的思绪/思考/生命科学
-<img src="/images/group1.png" width="40%" style="display: block; margin: 0 auto;" />
+<img src="/images/5.jpg" width="40%" style="display: block; margin: 0 auto;" />
 
 ---
 
